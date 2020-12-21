@@ -20,18 +20,18 @@ describe('depth-first search', () => {
   graph.createEdge("Lydia", "Thomas");
 
   test('should return false if the target node doe not exist', () => {
-    expect(graph.depthFirstReachable("Jasmine", "Albert")).toEqual(false);
+    expect(graph.breadthFirstReachable("Jasmine", "Albert")).toEqual(false);
   });
 
   test('should return false if the starting node doe not exist', () => {
-    expect(graph.depthFirstReachable("Albert", "Thomas")).toEqual(false);
+    expect(graph.breadthFirstReachable("Albert", "Thomas")).toEqual(false);
   });
 
   test('should check if the first friend in the adjacency list is reachable', () => {
-    expect(graph.depthFirstReachable("Jasmine", "Ada")).toEqual(true);
+    expect(graph.breadthFirstReachable("Jasmine", "Ada")).toEqual(true);
   });
 
   test('should return false if the target node can not be reached from the starting node', () => {
-    expect(graph.depthFirstReachable("Jasmine", "Sarah")).toEqual(false);
+    expect(graph.breadthFirstReachable("Jasmine", "Sarah")).toEqual(false);
   });
 });
