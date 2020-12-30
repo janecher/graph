@@ -119,4 +119,62 @@ class GraphObject {
     this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter(vertex => vertex !== vertex2);
     this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter(vertex => vertex !== vertex1);
   }
+
+  deapthFirstTraversalRecursive(vertex) {
+    let listResult = [];
+    let visited = {};
+    let adjacencyList = this.adjacencyList;
+    function helper(vertexNode) {
+      if(!vertexNode) {
+        return null;
+      }
+      listResult.push(vertexNode);
+      visited[vertexNode] = true;
+      adjacencyList[vertexNode].forEach(element => {
+        if(!visited[element]) {
+          return helper(element);
+        }
+      }) 
+    }
+    helper(vertex);
+    return listResult;
+  }
+
+  deapthFirstTraversalIterative(vertex) {
+    let listResult = [];
+    let visited = {};
+    let stack = [];
+    stack.push(vertex);
+    visited[vertex] = true;
+    while(stack.length) {
+      let current = stack.pop();
+      listResult.push(current);
+      this.adjacencyList[current].forEach(element => {
+        if(!visited[element]) {
+          visited[element] = true;
+          stack.push(element);
+        }
+      });
+    }
+    return listResult;
+  }
+
+  breadthFirstTraversalIterative(vertex) {
+    let listResult = [];
+    let visited = {};
+    let queue = [];
+    queue.push(vertex);
+    visited[vertex] = true;
+    while(queue.length) {
+      let current = queue.shift();
+      listResult.push(current);
+      this.adjacencyList[current].forEach(element => {
+        if(!visited[element]) {
+          visited[element] = true;
+          queue.push(element);
+        }
+      });
+    }
+    return listResult;
+  }
 }
